@@ -1,5 +1,5 @@
 public class binarySearch{
-    public static boolean BinarySearch(int [] arr, int x){
+    public static boolean search(int [] arr, int x){
         int low = 0, high = arr.length-1, mid;
 
         while(low <= high){
@@ -18,7 +18,7 @@ public class binarySearch{
     }
     public static void main(String[] args) {
         int [] arr1 = {1, 2, 3, 5, 7, 9, 10, 13, 111};
-        boolean b1 = BinarySearch(arr1, 13);
+        boolean b1 = search(arr1, 13);
         System.out.println(b1);
     }
 }
