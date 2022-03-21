@@ -2,8 +2,7 @@
  
 * This is based on Israel OpenU study plan
     - Chapters 1-12
-    - Exams solved questions
-    - Important notes to expand personal knowledge
+    - Solved Exams
 
 ### Table of content
 7. Inheritance
@@ -15,5 +14,5 @@
     - [Material](/Material/)
 
 
-* Exam Solutions :
-    - [2015-2022 Exam solutions](/Exams/)
+* Exams :
+    - [2015-2022 Exam Solutions](/Exams/)

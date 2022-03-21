@@ -1,5 +1,8 @@
 public class Recursion {
     
+    // 2022a Moed 89
+    // Soon
+
     // 2022a Moed 67
     public static boolean isIdentity(int[][] mat, int x, int size){
         return isIdentity(mat, x, size, x, x, 1);
@@ -112,7 +115,7 @@ public class Recursion {
     private static boolean outOfRange(int[][] mat, int row, int col) {
         return row < 0 || col < 0 || row >= mat.length || col >= mat[0].length;
     }
-    
+
     // 2020b Moed 84
     public static void findWord(char [][] arr, String word){
         int[][] mat = new int[arr.length][arr[0].length];
@@ -175,6 +178,57 @@ public class Recursion {
         System.out.println();
     }
 
+    // 2020b Moed 81
+    public static int makeSum(int[] lengths, int k, int num) {
+        if (lengths == null || lengths.length == 0)
+            return 0;
+        return makeSum(lengths, k, num, 0);
+    }
+    private static int makeSum(int[] lengths, int k, int num, int i) {
+        if (k == 0)
+            return 1;
+        if (i == lengths.length || num == 0 || k < 0)
+            return 0;
+        return makeSum(lengths, k - lengths[i], num - 1, i) + makeSum(lengths, k, num, i + 1);
+    }
+
+    // 2020a Moed 87
+    public static int totalWays(int[][] mat, int k) {
+        return totalWays(mat, k, 0, 0, false, 0);
+    }
+    private static int totalWays(int[][] mat, int k, int row, int col, boolean right, int count) {
+        if (!inRange(mat, row, col) || count > k)
+            return 0;
+        if (row == mat.length-1 && col == mat[0].length-1)
+            return count == k ? 1 : 0;
+        
+        if (row == 0 && col == 0)
+            return totalWays(mat, k, 1, 0, false, 0) + totalWays(mat, k, 0, 1, true, 0);
+        
+        return totalWays(mat, k, row+1, col, false, right ? count + 1 : count) // down
+            + totalWays(mat, k, row, col+1, true, right ? count : count + 1); // right
+    }
+    private static boolean inRange(int[][] mat, int row, int col) {
+        return row >= 0 && row < mat.length && col >= 0 && col < mat[0].length;
+    }
+
+    // 2020a Moed 85
+    public static int findMaximum(int[][] mat) {
+        if (mat == null || mat.length == 0 || mat[0].length == 0)
+            return 0;
+        return findMaximum(mat, 0, 0);
+    }
+    private static int findMaximum(int[][] mat, int row, int col) {
+        if (checkInRange(mat, row, col) || mat[row][col] == -1)
+            return 0;
+
+        return mat[row][col] +
+            Math.max(findMaximum(mat, row + 1, col), // next row
+                findMaximum(mat, row, row % 2 == 0 ? col + 1 : col - 1)); // next column
+    }
+    private static boolean checkInRange(int[][] mat, int row, int col) {
+        return row < 0 || col < 0 || row >= mat.length || col >= mat[0].length;
+    }
     // 2019b Moed 85
     public static int howManyPaths(int [][] mat){
         return howManyPaths(mat, 0, 0);
@@ -268,6 +322,116 @@ public class Recursion {
         }
         return sumPower3(num, n+1, sum+(int)Math.pow(3, n)) || 
                 sumPower3(num, n+1, sum);
+    }
+
+    // 2018b Moed 83
+    public static int prince(int[][] drm, int i, int j) {
+        final int NO_PATH = -1;
+        if (drm == null || i < 0 || j < 0 || i >= drm.length || j >= drm.length)
+            return NO_PATH;
+        
+        int res = prince(drm, i, j, 0);
+        if(res == Integer.MAX_VALUE)
+            return NO_PATH;
+        return res;
+    }
+    private static int prince(int[][] drm, int i, int j, int count) {
+        final int VISITED = -10, TARGET = -1, MAX = Integer.MAX_VALUE;
+        if (drm[i][j] == TARGET)
+            return count + 1;
+        if (drm[i][j] == VISITED)
+            return MAX;
+
+        int temp = drm[i][j];
+        drm[i][j] = VISITED; // marking as visited
+        count++; // counting this step
+        
+        int up = MAX, down = MAX, left = MAX, right = MAX;
+        
+        if (i > 0 && isValid(temp, drm[i-1][j]))
+            up = prince(drm, i-1, j, count);
+        
+        if (i+1 < drm.length && isValid(temp, drm[i+1][j]))
+            down = prince(drm, i+1, j, count);
+        
+        if (j > 0 && isValid(temp, drm[i][j-1]))
+            left = prince(drm, i, j-1, count);
+        
+        if (j+1 < drm.length && isValid(temp, drm[i][j+1]))
+            right = prince(drm, i, j+1, count);
+        
+        drm[i][j] = temp; // changing back to the original value
+        return Math.min(Math.min(up, down), Math.min(left, right));
+    }
+
+    private static boolean isValid(int from, int to) {
+        // checking if the "evil" is in the next cell or the jump is valid.
+        return to == -1 || Math.abs(from - to) <= 1 || from - to == 2;
+    }
+
+    // 2018a Moed 91
+    public static int cheapestRoute(int[] stations) {
+        return cheapestRoute(stations, 0);
+    }
+    private static int cheapestRoute(int[] a, int i) {
+        if (a[i] == 0)
+            return Integer.MAX_VALUE;
+        if (i == a.length -1)
+            return a[i];
+        if (i == a.length - 2)
+            return a[i] + a[i+1];
+        
+        int temp = a[i];
+        a[i] = 0;
+        
+        int nextOne = cheapestRoute(a, i+1), nextTwo = cheapestRoute(a, i+2),
+        cheapest = temp + Math.min(nextOne, nextTwo);
+        
+        a[i] = temp;
+        if (cheapest <= 0 || cheapest == Integer.MAX_VALUE)
+            return Integer.MAX_VALUE;
+        return cheapest;   
+    }
+
+    // 2018a Moed 85
+    public static int longestSlope(int[][] mat, int num) {
+        return longestSlope(mat, num, 0, 0);
+    }
+    
+    // linear search in every row
+    private static int longestSlope(int[][] mat, int num, int row, int col) {
+        // moving to the next row if we've checked all the cells in the current row.
+        if (col == mat[0].length) {
+            col = 0;
+            row++;
+        }
+        if (row == mat.length)
+            return 0;
+        
+        int next = longestSlope(mat, num, row, col+1),
+            current = longestSlope(mat, num, row, col, mat[row][col]+num);
+        return Math.max(current, next);
+    }
+    
+    // returns the longest slope that starts with mat[row][col]
+    private static int longestSlope(int[][] mat, int num, int row, int col, int prev) {
+        if (!checkRange(mat, row, col) || mat[row][col] == Integer.MIN_VALUE || prev - mat[row][col] != num)
+            return 0;
+        
+        int temp = mat[row][col];
+        mat[row][col] = Integer.MIN_VALUE; // handling the case that num is equal to 0.
+        
+        int up = longestSlope(mat, num, row-1, col, temp),
+            down = longestSlope(mat, num, row+1, col, temp),
+            left = longestSlope(mat, num, row, col-1, temp),
+            right = longestSlope(mat, num, row, col+1, temp);
+        mat[row][col] = temp; // changing back to the original value
+        
+        // adding 1 in order to include the current step.
+        return 1 + Math.max(Math.max(up, down), Math.max(left, right));
+    }
+    private static boolean checkRange(int[][] mat, int row, int col) {
+        return row >= 0 && row < mat.length && col >= 0 && col < mat[0].length;
     }
 
     // 2017b Moed 85
