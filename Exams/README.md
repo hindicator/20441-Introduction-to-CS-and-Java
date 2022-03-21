@@ -38,20 +38,16 @@
 
 * Exam Format :
 <ol>
-<li>Recursion</li>
-<li>Efficency and Complexity</li>
-<li>Binary Trees</li>
-<li>Polymorphism and Inheritance</li>
-<li>Linked lists</li>
+    <li>Recursion</li>
+    <li>Efficency and Complexity</li>
+    <li>Binary Trees</li>
+    <li>Polymorphism and Inheritance</li>
+    <li>Linked lists</li>
 </ol>
-    1. Recursion
-    2. Efficency and Complexity
-    3. Binary Trees
-    4. Polymorphism and Inheritance
-    5. Linked lists
 
 
 * Quick links for questions :[^1]
+    - [2022a 89 - Question01]()
     - [2022a 67 - Question01]()
     - [2021b 62 - Question01]()
     - [2021b 60 - Question01]()

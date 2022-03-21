@@ -433,6 +433,39 @@ public class Recursion {
     private static boolean checkRange(int[][] mat, int row, int col) {
         return row >= 0 && row < mat.length && col >= 0 && col < mat[0].length;
     }
+    // 2017b Moed 93
+    public static int cntTrueReg(boolean[][] mat) {
+        // mat is a squared matrix.
+        if (mat == null || mat.length == 0 || mat[0] == null)
+            return 0;
+        boolean[][] visited = new boolean[mat.length][mat.length]; // all values are false by default
+        return cntTrueReg(mat, visited, 0, 0);
+    }
+    private static int cntTrueReg(boolean[][] mat, boolean[][] visited, int row, int col) {
+        if (col == mat.length) {
+            col = 0;
+            row++;
+        }
+        if (row == mat.length)
+            return 0; // returns 0 so it won't be counted.
+        
+        int next = cntTrueReg(mat, visited, row, col + 1);
+        if (!mat[row][col] || visited[row][col])
+            return next;
+        
+        mark(mat, visited, row, col); // marking the whole region as visited 
+        return 1 + next;
+    }
+    private static void mark(boolean[][] mat, boolean[][] visited, int row, int col) {
+        if (row < 0 || col < 0 || row >= mat.length || col >= mat.length || visited[row][col] || !mat[row][col])
+            return;
+        
+        visited[row][col] = true;
+        mark(mat, visited, row - 1, col); // up
+        mark(mat, visited, row + 1, col); // down
+        mark(mat, visited, row, col -1); // left
+        mark(mat, visited, row, col + 1); // right
+    }
 
     // 2017b Moed 85
     public static int oneFiveSeven(int n){
@@ -447,6 +480,8 @@ public class Recursion {
         }
         return Math.min(oneFiveSeven(n-7, k+1), Math.min(oneFiveSeven(n-5, k+1), oneFiveSeven(n-1, k+1)));
     }
+
+    // 2017b Moed 84
 
     // 2015b Moed 86
     public static void printAllSum(int[] a, int sum){
