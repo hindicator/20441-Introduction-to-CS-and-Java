@@ -6,6 +6,9 @@
     * Exams solved questions
     * Important notes to expand personal knowledge
 
+* Exam Solutions :
+    - [2015-2022 Exam solutions](/Exams/)
+
 ### Table of content
 7. Inheritance
 8. Polymorphism
