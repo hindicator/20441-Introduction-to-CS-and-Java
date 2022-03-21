@@ -38,3 +38,4 @@
 
 * Quick links for questions :
 2021a85-Question01
+![2021a85-Question01](/Exams/Questions/2021a85-Question01.png)
