@@ -3,13 +3,13 @@
 ## This directory contain solutions to previous years exams
 
 * Exam Format :
-<ol>
+    <ol>
     <li>    Recursion</li>
     <li>    Efficency and Complexity</li>
     <li>    Binary Trees</li>
     <li>    Polymorphism and Inheritance</li>
     <li>    Linked lists</li>
-</ol>
+    </ol>
 
 
 * Quick links for questions :[^1]
