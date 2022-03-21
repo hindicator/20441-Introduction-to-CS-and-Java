@@ -37,6 +37,13 @@
 ```
 
 * Exam Format :
+<ol>
+<li>Recursion</li>
+<li>Efficency and Complexity</li>
+<li>Binary Trees</li>
+<li>Polymorphism and Inheritance</li>
+<li>Linked lists</li>
+</ol>
     1. Recursion
     2. Efficency and Complexity
     3. Binary Trees
