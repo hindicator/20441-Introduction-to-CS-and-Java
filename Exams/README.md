@@ -4,20 +4,19 @@
 
 
 * Exam Format :
+    
+    > Part A - Questions 1-2
+
+    > Part B - Questions 3-5
+    
     1. Recursion
     2. Efficency and Complexity
     3. Binary Trees
     4. Polymorphism and Inheritance
     5. Linked lists
-<ol>
-    <li>Recursion</li>
-    <li>Efficency and Complexity</li>
-    <li>Binary Trees</li>
-    <li>Polymorphism and Inheritance</li>
-    <li>Linked lists</li>
-</ol>
 
 
+### Exam Solutions
 * Quick links for questions :[^1]
     - [2022a 89 - Question01]()
     - [2022a 67 - Question01]()
