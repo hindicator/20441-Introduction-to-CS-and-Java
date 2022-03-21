@@ -37,14 +37,13 @@
 ```
 
 * Exam Format :
-
-    - Part A -
-        1. Recursion
-        2. Efficency and Complexity
-    - Part B
-        3. Binary Trees
-        4. Polymorphism and Inheritance
-        5. Linked lists
+- Part A -
+    1. Recursion
+    2. Efficency and Complexity
+- Part B
+    3. Binary Trees
+    4. Polymorphism and Inheritance
+    5. Linked lists
 
 
 * Quick links for questions :[^1]
