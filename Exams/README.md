@@ -38,11 +38,11 @@
 
 * Exam Format :
 <ol>
-    <li>Recursion</li>
-    <li>Efficency and Complexity</li>
-    <li>Binary Trees</li>
-    <li>Polymorphism and Inheritance</li>
-    <li>Linked lists</li>
+    <dd><li>Recursion</li></dd>
+    <dd><li>Efficency and Complexity</li></dd>
+    <dd><li>Binary Trees</li></dd>
+    <dd><li>Polymorphism and Inheritance</li></dd>
+    <dd><li>Linked lists</li></dd>
 </ol>
 
 
