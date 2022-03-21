@@ -23,6 +23,32 @@ public class Recursion {
         }
     }
 
+    // 2021b Moed 62
+    public static boolean equalSplit(int[] arr) {
+        if (arr.length % 2 == 1)
+            return false;
+        return equalSplit(arr, 0, 0, 0, 0);
+    }
+    /* count = the amount of elements in the first set (sum1) */
+    private static boolean equalSplit(int[] arr, int i, int sum1, int sum2, int count) {
+        if (i == arr.length)
+            return sum1 == sum2 && 2*count == arr.length;
+        
+        return equalSplit(arr, i+1, sum1 + arr[i], sum2, count+1)
+            || equalSplit(arr, i+1, sum1, sum2 + arr[i], count);
+    }
+
+    // 2021b Moed 60
+    public static boolean split3(int[] arr) {
+        return split3(arr, 0, 0, 0, 0);
+    }
+    private static boolean split3(int[] a, int i, int sum1, int sum2, int sum3) {
+        if (i == a.length)
+            return sum1 == sum2 && sum2 == sum3;
+        return split3(a, i+1, sum1 + a[i], sum2, sum3) // adding to sum1
+            || split3(a, i+1, sum1, sum2 + a[i], sum3) // adding to sum2
+            || split3(a, i+1, sum1, sum2, sum3 + a[i]); // adding to sum3
+    }
     // 2021a Moed 85
     public static int minPrice(int[][] mat)
     {
@@ -57,7 +83,36 @@ public class Recursion {
 
         return Math.max(take, noTake);
     }
+    // 2020b Moed 96
+    public static int maxSumKnight(int[][] mat) {
+        return maxSumKnight(mat, 0, 0, 0, mat[0][0]);
+    }
 
+    private static int maxSumKnight(int[][] mat, int row, int col, int sum, int prev) {
+        if (outOfRange(mat, row, col) || mat[row][col] < 0 || Math.abs(mat[row][col] - prev) > 1)
+            return 0;
+        
+        sum += mat[row][col];
+        if (row == mat.length - 1 && col == mat[0].length - 1)
+            return sum;
+        
+        mat[row][col] *= -1; // changing it to negative
+        int u1 = maxSumKnight(mat, row - 2, col +1, sum, -mat[row][col]), u2 = maxSumKnight(mat, row - 2, col - 1, sum, -mat[row][col]),
+            u3 = maxSumKnight(mat, row - 1, col + 2, sum, -mat[row][col]), u4 = maxSumKnight(mat, row - 1, col - 2, sum, -mat[row][col]);
+        
+        int d1 = maxSumKnight(mat, row + 2, col +1, sum, -mat[row][col]), d2 = maxSumKnight(mat, row + 2, col - 1, sum, -mat[row][col]),
+            d3 = maxSumKnight(mat, row + 1, col + 2, sum, -mat[row][col]), d4 = maxSumKnight(mat, row + 1, col - 2, sum, -mat[row][col]);
+        
+        mat[row][col] *= -1; // changing back to positive
+        return Math.max(
+            Math.max(Math.max(u1, u2), Math.max(u3, u4)), 
+            Math.max(Math.max(d1, d2), Math.max(d3, d4)));
+        
+    }
+    private static boolean outOfRange(int[][] mat, int row, int col) {
+        return row < 0 || col < 0 || row >= mat.length || col >= mat[0].length;
+    }
+    
     // 2020b Moed 84
     public static void findWord(char [][] arr, String word){
         int[][] mat = new int[arr.length][arr[0].length];
